@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Legitimacy Check</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/common.css">
+</head>
+
+<body><%- include('partials/_nav') %>
+        <div class="container mt-5 pt-5" style="min-height: calc(100vh - 130px);">
+            <h1 class="text-center mb-4">Website Legitimacy Check</h1>
+
+            <!-- Form -->
+            <div class="row g-3 mb-5">
+                <!-- Website Legitimacy Form -->
+                <div class="col-md-6 ">
+                    <form action="/check-legitimacy" method="POST" class="p-4 shadow rounded-3 bg-gradient bg-info">
+                        <h4 class="text-center mb-4 fw-bold" style="color: var(--primary-color);">Website Legitimacy
+                            Checker
+                        </h4>
+                        <div class="mb-3">
+                            <label for="website" class="form-label">Enter Website Address</label>
+                            <input type="text" name="website" id="website" class="form-control"
+                                placeholder="example.com" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Check Legitimacy</button>
+                    </form>
+                </div>
+
+                <!-- Certificate Verification Form -->
+                <div class="col-md-6">
+                    <form action="/check-certificate" method="POST" class="p-4 shadow rounded-3 bg-gradient bg-success">
+                        <h4 class="text-center mb-4 fw-bold" style="color: var(--primary-color);">Certificate Number
+                            Checker
+                        </h4>
+                        <div class="mb-3">
+                            <label for="certCode" class="form-label">Enter Certificate Number</label>
+                            <input type="text" name="certCode" id="certCode" class="form-control"
+                                placeholder="HT-CERXXXXX" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Check Certificate</button>
+                    </form>
+                </div>
+            </div>
+            <div class="py-5 text-black">
+                <% if (error) { %>
+                    <div class="alert alert-danger">
+                        <strong>Error:</strong>
+                        <%= error %>
+                    </div>
+                    <% } else if (operationType==="legitimacy" && isLegit !==null) { %>
+                        <div class="mb-4">
+                            <% if (isLegit) { %>
+                                <div class="card border-0 shadow-lg rounded-3 mx-auto"
+                                    style="max-width: 800px; background: linear-gradient(135deg, #e3f2fd, #f8f9fa);">
+                                    <div class="text-center py-4">
+                                        <img src="/images/certified.min.svg" alt="Certified" class="img-fluid mb-3"
+                                            style="max-height: 120px;">
+                                        <h2 class="display-6 text-success fw-bold">
+                                            <a href="http://<%= website %>" class="text-success fw-bold"
+                                                target="_blank">
+                                                <%= website %>
+                                            </a>&ThinSpace;
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46"
+                                                fill="currentColor" class="bi bi-box-arrow-up-right"
+                                                viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5" />
+                                                <path fill-rule="evenodd"
+                                                    d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z" />
+                                            </svg>
+                                        </h2>
+                                        <h2 class="display-6 text-success fw-bold">is verified as legitimate.</h2>
+                                    </div>
+                                    <div class="px-4 pb-4">
+                                        <div class="d-flex justify-content-between">
+                                            <h4 class="fw-bold">Certification by HostTambola</h4>
+                                            <h6> Certificate No:
+                                                <mark>
+                                                    <%= certCode %>
+                                                </mark>
+                                            </h6>
+                                        </div>
+                                        <p>This website <a href="http://<%= website %>" class="text-dark fw-bold"
+                                                target="_blank">
+                                                <%= website %>
+                                            </a> is certified by HostTambola. It ensures the platform is technically
+                                            legitimate, and
+                                            activities like winner fixing are not conducted. HostTambola-certified
+                                            websites
+                                            rely purely on
+                                            chance and fairness.
+                                        </p>
+                                        <p>The system operates using <strong>Math.random()</strong>, ensuring random
+                                            selection of numbers
+                                            between 1 and 90. As a result, no one, including our developers, can
+                                            predict the
+                                            next number or
+                                            winners.
+                                        </p>
+                                        <p>If you're curious about how our system works, feel free to <a href="/code"
+                                                class="text-primary">check our
+                                                code</a>.
+                                        </p>
+                                        <p>If you have further questions or need assistance, visit our <a
+                                                href="/contact" class="text-primary">Contact
+                                                Page</a>.
+                                        </p>
+                                        <p class="text-info fw-bolder">
+                                            However we don't involve in game. We only build and provide the
+                                            system.
+                                        </p>
+                                        <p class="text-warning fw-bold">Recommendation: Play only if you know and
+                                            trust the
+                                            organizer.</p>
+                                        <!-- Download Certificate Button -->
+                                        <div class="mt-4 text-center">
+                                            <!-- Visit Website Button -->
+                                            <a class="btn btn-info btn-lg me-2 m-3" href="http://<%= website %>"
+                                                target="_blank" rel="noopener noreferrer" style="
+                                                font-weight: bold;
+                                                border-radius: 50px;
+                                                background: var(--navbar-gradient);
+                                                border: none;
+                                                color: white;
+                                                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+                                                Visit Website
+                                            </a>
+
+                                            <!-- Download PDF Button -->
+                                            <form action="/download/certificate/pdf" method="post"
+                                                style="display: inline-block;" class="m-3">
+                                                <input type="hidden" name="website" value="<%= website %>">
+                                                <button type="submit" class="btn btn-warning btn-lg fw-bold mx-2" style="
+                                                border-radius: 50px;
+                                                color: black;
+                                                background: var(--primary-color);
+                                                border: none;
+                                                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+                                                        <path
+                                                            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
+                                                    </svg> Download Certificate PDF
+                                                </button>
+                                            </form>
+
+                                            <!-- Download Image Button -->
+                                            <form action="/download/certificate/image" method="post"
+                                                style="display: inline-block;" class="m-3">
+                                                <input type="hidden" name="website" value="<%= website %>">
+                                                <button type="submit" class="btn btn-success btn-lg fw-bold mx-2" style="
+                                                border-radius: 50px;
+                                                color: white;
+                                                background: var(--accent-color);
+                                                border: none;
+                                                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+                                                        <path
+                                                            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
+                                                    </svg> Download Certificate Image
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <% } else { %>
+                                    <div class="card border-0 shadow-lg rounded-3 mx-auto"
+                                        style="max-width: 800px; background: linear-gradient(135deg, #fce4ec, #f8f9fa);">
+                                        <div class="text-center py-4">
+                                            <img src="/images/notcertified.min.svg" alt="Not Certified"
+                                                class="img-fluid mb-3" style="max-height: 120px;">
+                                            <h2 class="display-6 text-danger fw-bold">❌ Not Legitimate</h2>
+                                            <p class="text-danger fw-bold">
+                                                The website <a href="http://<%= website %>" class="text-danger fw-bold"
+                                                    target="_blank">
+                                                    <%= website %>
+                                                </a> is not verified by us. Please check again or contact support.
+                                            </p>
+                                        </div>
+                                        <div class="px-4 pb-4">
+                                            <div class="d-flex justify-content-between">
+                                                <h4 class="fw-bold">Certification by HostTambola</h4>
+                                                <h4></h4>
+                                            </div>
+                                            <p>This website <a href="http://<%= website %>" class="text-dark fw-bold"
+                                                    target="_blank">
+                                                    <%= website %>
+                                                </a> is not certified by HostTambola. We cannot guarantee its
+                                                legitimacy or
+                                                confirm the
+                                                absence
+                                                of unfair practices.
+                                            </p>
+                                            <p>HostTambola-certified websites always operate on chance using
+                                                <strong>Math.random()</strong>, ensuring unbiased outcomes.
+                                            </p>
+                                            <p>Curious about our system? You can <a href="/code"
+                                                    class="text-primary">check
+                                                    our code</a> for
+                                                more details.</p>
+                                            <p>For questions or support, visit our <a href="/contact"
+                                                    class="text-primary">Contact
+                                                    Page</a>.
+                                            </p>
+                                            <p class="text-danger fw-bold">Caution: Ensure the website is correct or
+                                                contact
+                                                us for
+                                                assistance.</p>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                        </div>
+                        <% } else if (operationType==="certificate" && isLegit !==null) { %>
+                            <div class="mb-4">
+                                <% if (isLegit) { %>
+                                    <!-- Certified Section -->
+                                    <div class="text-center py-5"
+                                        style="background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                                        <!-- Centered Certified Badge -->
+                                        <img src="/images/certified.min.svg" alt="Certified Badge"
+                                            class="img-fluid mb-4"
+                                            style="max-height: 120px; display: block; margin: 0 auto;">
+
+                                        <!-- Certification Information -->
+                                        <div class="py-3 px-4"
+                                            style="background-color: #e9f7ef; border: 2px solid #d4edda; border-radius: 8px; display: inline-block;">
+                                            <span class="d-block mb-2">
+                                                <strong class="text-success">The Certification Number:</strong>
+                                                <span class="text-dark">
+                                                    <%= certCode %>
+                                                </span> belongs to <mark>
+                                                    <%= website %>
+                                                </mark>
+                                            </span>
+                                            <figure class="text-end">
+                                                <figcaption class="blockquote-footer mt-2">
+                                                    Certified by <cite title="Source Title"><a href="/"
+                                                            class="text-success">HostTambola</a></cite>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+
+                                        <!-- Description of Certification -->
+                                        <div class="mt-4 px-4" style="font-size: 1.1rem; color: #555;">
+                                            <p>This website is certified by <strong>HostTambola</strong>, ensuring
+                                                it is fully legitimate and free from activities like winner
+                                                manipulation. All HostTambola certified sites operate purely on
+                                                chance.</p>
+                                            <p>The system uses <mark>Math.random()</mark> to generate random
+                                                numbers, ensuring the outcomes are completely unpredictable even for
+                                                our developers. Our developers cannot influence the results,
+                                                guaranteeing fairness.</p>
+                                        </div>
+
+                                        <!-- Action Buttons -->
+                                        <div class="mt-4 text-center">
+                                            <a class="btn btn-info btn-lg me-2" href="http://<%= website %>"
+                                                target="_blank" rel="noopener noreferrer" style="
+                                                    font-weight: bold;
+                                                    border-radius: 50px;
+                                                    background: var(--navbar-gradient);
+                                                    border: none;
+                                                    color: white;
+                                                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+                                                Visit Website
+                                            </a>
+                                            <a class="btn btn-success btn-lg me-2" href="/legit/<%= website %>" style="
+                                                    font-weight: bold;
+                                                    border-radius: 50px;
+                                                    background: var(--accent-color);
+                                                    border: none;
+                                                    color: white;
+                                                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+                                                View Certificate
+                                            </a>
+                                            <form action="/download/certificate/pdf" method="post"
+                                                style="display: inline-block;">
+                                                <input type="hidden" name="website" value="<%= website %>">
+                                                <button type="submit" class="btn btn-warning btn-lg fw-bold" style="
+                                                    border-radius: 50px;
+                                                    color: black;
+                                                    background: var(--primary-color);
+                                                    border: none;
+                                                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+                                                    Download PDF
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                    <% } else { %>
+                                        <!-- Not Certified Section -->
+                                        <div class="text-center py-5"
+                                            style="background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                                            <!-- Centered Not Certified Badge -->
+                                            <img src="/images/notcertified.min.svg" alt="Not Certified Badge"
+                                                class="img-fluid mb-4"
+                                                style="max-height: 120px; display: block; margin: 0 auto;">
+
+                                            <!-- Certification Mismatch Information -->
+                                            <div class="alert alert-danger"
+                                                style="border-radius: 8px; padding: 20px; text-align: center;">
+                                                <strong>Certification Code <%= certCode %></strong> does not match
+                                                any legitimate website in our records.
+                                            </div>
+
+                                            <!-- Call to Action -->
+                                            <p class="mt-4" style="font-size: 1.1rem; color: #555;">
+                                                Please ensure that the certification code you entered is correct or
+                                                check back later for updates.
+                                            </p>
+                                        </div>
+                                        <% } %>
+                            </div>
+                            <% } %>
+            </div>
+
+            <!-- Error Alert -->
+            <% if (error) { %>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error:</strong>
+                    <%= error %>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <% } %>
+        </div>
+        <%- include('partials/_footer') %>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

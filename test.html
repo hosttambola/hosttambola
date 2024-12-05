@@ -1,0 +1,136 @@
+<% if (error) { %>
+    <div class="alert alert-danger">
+        <strong>Error:</strong>
+        <%= error %>
+    </div>
+    <% } else if (operationType==="legitimacy" && isLegit !==null) { %>
+        <div class="mb-4">
+            <% if (isLegit) { %>
+                <div class="card border-0 shadow-lg rounded-3 mx-auto"
+                    style="max-width: 800px; background: linear-gradient(135deg, #e3f2fd, #f8f9fa);">
+                    <div class="text-center py-4">
+                        <img src="/images/certified.min.svg" alt="Certified" class="img-fluid mb-3"
+                            style="max-height: 120px;">
+                        <h2 class="display-6 text-success fw-bold">
+                            <a href="http://<%= website %>" class="text-success fw-bold" target="_blank">
+                                <%= website %>
+                            </a>
+                            <br> is verified as legitimate.
+                        </h2>
+                        <p class="text-muted fst-italic">Verified and trusted source</p>
+                    </div>
+                    <div class="px-4 pb-4">
+                        <div class="d-flex justify-content-between">
+                            <h4 class="fw-bold">Certification by HostTambola</h4>
+                            <h6> Certificate No:
+                                <mark>
+                                    <%= certCode %>
+                                </mark>
+                            </h6>
+                        </div>
+                        <p>This website <a href="http://<%= website %>" class="text-dark fw-bold" target="_blank">
+                                <%= website %>
+                            </a> is certified by HostTambola. It ensures the platform is technically
+                            legitimate, and
+                            activities like winner fixing are not conducted. HostTambola-certified websites
+                            rely purely on
+                            chance and fairness.
+                        </p>
+                        <p>The system operates using <strong>Math.random()</strong>, ensuring random
+                            selection of numbers
+                            between 1 and 90. As a result, no one, including our developers, can predict the
+                            next number or
+                            winners.
+                        </p>
+                        <p>If you're curious about how our system works, feel free to <a href="/code"
+                                class="text-primary">check our
+                                code</a>.
+                        </p>
+                        <p>If you have further questions or need assistance, visit our <a href="/contact"
+                                class="text-primary">Contact
+                                Page</a>.
+                        </p>
+                        <p class="text-warning fw-bold">Recommendation: Play only if you know and trust the
+                            organizer.</p>
+                        <!-- Download Certificate Button -->
+                        <button onclick="downloadCertificate('pdf')" class="btn btn-success fw-bold mx-2"
+                            style="border-radius: 50px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                            Download PDF
+                        </button>
+                        <button onclick="downloadCertificate('image')" class="btn btn-primary fw-bold mx-2"
+                            style="border-radius: 50px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                            Download Image
+                        </button>
+                    </div>
+                </div>
+                <% } else { %>
+                    <div class="card border-0 shadow-lg rounded-3 mx-auto"
+                        style="max-width: 800px; background: linear-gradient(135deg, #fce4ec, #f8f9fa);">
+                        <div class="text-center py-4">
+                            <img src="/images/notcertified.min.svg" alt="Not Certified" class="img-fluid mb-3"
+                                style="max-height: 120px;">
+                            <h2 class="display-6 text-danger fw-bold">❌ Not Legitimate</h2>
+                            <p class="text-danger fw-bold">
+                                The website <a href="http://<%= website %>" class="text-danger fw-bold" target="_blank">
+                                    <%= website %>
+                                </a> is not verified by us. Please check again or contact support.
+                            </p>
+                        </div>
+                        <div class="px-4 pb-4">
+                            <div class="d-flex justify-content-between">
+                                <h4 class="fw-bold">Certification by HostTambola</h4>
+                                <h4></h4>
+                            </div>
+                            <p>This website <a href="http://<%= website %>" class="text-dark fw-bold" target="_blank">
+                                    <%= website %>
+                                </a> is not certified by HostTambola. We cannot guarantee its legitimacy or
+                                confirm the
+                                absence
+                                of unfair practices.
+                            </p>
+                            <p>HostTambola-certified websites always operate on chance using
+                                <strong>Math.random()</strong>, ensuring unbiased outcomes.
+                            </p>
+                            <p>Curious about our system? You can <a href="/code" class="text-primary">check
+                                    our code</a> for
+                                more details.</p>
+                            <p>For questions or support, visit our <a href="/contact" class="text-primary">Contact
+                                    Page</a>.
+                            </p>
+                            <p class="text-danger fw-bold">Caution: Ensure the website is correct or contact
+                                us for
+                                assistance.</p>
+                        </div>
+                    </div>
+                    <% } %>
+        </div>
+        <% } else if (operationType==="certificate" && isLegit !==null) { %>
+            <div class="mb-4">
+                <% if (isLegit) { %>
+                    <div class="alert alert-success">
+                        Certification code <strong>
+                            <%= certCode %>
+                        </strong>
+                        belongs to <strong>
+                            <%= website %>
+                        </strong>.
+                    </div>
+                    <% } else { %>
+                        <div class="alert alert-danger">
+                            Certification code <strong>
+                                <%= certCode %>
+                            </strong>
+                            does not match any legitimate website.
+                        </div>
+                        <% } %>
+            </div>
+            <% } %>
+
+
+            
+            This website ${website} is certified by HostTambola.in. which mean we can say for sure its technically legit website
+            and activities like winner fixing are not done. HostTambola.in certified website are always technically legit and work on
+            pure chance. You can check our computer code how it work by clicking here. The system work by command mathRandom which
+            mean server will choose random number between 1-90. Because its completely random event our developer doesn't have any
+            idea which number will call next and who will be the winners. You can always contact our developer by our contact page.
+            HostTambola.in/contact

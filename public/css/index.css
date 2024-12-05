@@ -1,0 +1,18 @@
+.card.feature-card {
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(255, 223, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card.feature-card:hover {
+  transform: scale(1.1);
+  box-shadow: var(--hover-glow);
+}
+.hero-section,
+.cta-section {
+  background: var(--card-gradient);
+  color: white;
+  padding: 3rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}

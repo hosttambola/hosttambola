@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Tambola Game Provider</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <%- include('partials/_nav') %>
+
+        <!-- Hero Section -->
+        <section class="hero-section text-center py-5 mt-5" style="background: var( --card-gradient);">
+            <div class="container">
+                <h1 class="display-4 text-white">Welcome to Host Tambola</h1>
+                <p class="lead text-white">Your ultimate platform to create, manage, and play Tambola games with ease.
+                </p>
+                <a href="/contact" class="btn btn-lg text-white mt-3" style="background: var(--primary-color);">Get
+                    Started</a>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section class="about py-5">
+            <div class="container text-center">
+                <h2 class="fw-bold" style="color: var(--primary-color);">About Us</h2>
+                <p class="lead">We are the leading provider of tambola games, offering a variety of exciting features
+                    for players worldwide.</p>
+                <p>Our platform is designed to bring the fun of tambola directly to your screen, with a secure and
+                    user-friendly interface. Whether you're hosting a virtual event or enjoying a game with friends, we
+                    ensure a top-notch experience.</p>
+                <p>With real-time updates, secure transactions, and customizable themes, we aim to make your gaming
+                    experience enjoyable and memorable. Join thousands of users who trust us to bring their events to
+                    life with exciting tambola games!</p>
+            </div>
+        </section>
+
+        <!-- Our Team Section -->
+        <section class="middle-section py-5" style="background: var( --card-gradient);">
+            <div class="container text-center">
+                <h2 class="fw-bold" style="color: var(--primary-color);">Our Team</h2>
+                <p>We are a passionate group of software developers based in <mark class="big"
+                        style="background-color: var(--secondary-color); color: white;">Kolkata</mark>, West Bengal,
+                    India. With a deep love for gaming and technology, our team works tirelessly to create innovative
+                    and seamless experiences for our users.</p>
+                <p>Our developers and designers work hand-in-hand to ensure that our platform stays secure, scalable,
+                    and user-friendly, allowing players to focus on what matters most: the game.</p>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="container py-5">
+            <h2 class="text-center fw-bold mb-4" style="color: var(--primary-color);">Why Choose Us?</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+
+                <!-- Card 1: Easy Setup -->
+                <div class="col">
+                    <div class="card feature-card"
+                        style="background: var(--card-gradient); border-radius: 20px; box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3); transition: transform 0.3s;">
+                        <div class="card-body text-center text-white">
+                            <i class="fa-solid fa-thumbs-up mb-3" style="font-size: 3rem;"></i>
+                            <h5 class="card-title">Easy Setup</h5>
+                            <p class="card-text">Host your tambola games in minutes with our simple setup process. No
+                                technical skills needed.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Real-Time Updates -->
+                <div class="col">
+                    <div class="card feature-card"
+                        style="background: var(--card-gradient); border-radius: 20px; box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3); transition: transform 0.3s;">
+                        <div class="card-body text-center text-white">
+                            <i class="fa-solid fa-clock mb-3" style="font-size: 3rem;"></i>
+                            <h5 class="card-title">Real-Time Updates</h5>
+                            <p class="card-text">Enjoy instant updates on your game with live number calling and
+                                automatic winner notifications.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Customization -->
+                <div class="col">
+                    <div class="card feature-card"
+                        style="background: var(--card-gradient); border-radius: 20px; box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3); transition: transform 0.3s;">
+                        <div class="card-body text-center text-white">
+                            <i class="fa-solid fa-palette mb-3" style="font-size: 3rem;"></i>
+                            <h5 class="card-title">Customization</h5>
+                            <p class="card-text">Customize the look and feel of your games with personalized themes and
+                                designs to match your event.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <%- include('partials/_footer') %>
+
+            <!-- Bootstrap JS and dependencies -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

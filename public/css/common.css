@@ -1,0 +1,56 @@
+:root {
+  --primary-color: #ffd700; /* Casino Gold */
+  --secondary-color: #b22222; /* Deep Red */
+  --accent-color: #4caf50; /* Green for accents */
+  --background-gradient: linear-gradient(
+    135deg,
+    #1e1e1e,
+    #000000
+  ); /* Premium Black */
+  --card-gradient: linear-gradient(
+    135deg,
+    #ffd700,
+    #ff4500
+  ); /* Gold to Orange */
+  --footer-gradient: linear-gradient(
+    135deg,
+    #000000,
+    #1e1e1e
+  ); /* Dark Gradient */
+  --navbar-gradient: linear-gradient(
+    135deg,
+    #b22222,
+    #8b0000
+  ); /* Red Gradient */
+  --hover-glow: 0 0 20px rgba(255, 223, 0, 0.8); /* Glowing Effect */
+}
+
+body {
+  background: var(--background-gradient);
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+.card-gradient {
+  background: var(--card-gradient);
+}
+.navbar {
+  background: var(--navbar-gradient);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+}
+
+.nav-link {
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--primary-color);
+}
+
+footer {
+  background: var(--footer-gradient);
+  color: var(--primary-color);
+  padding: 2rem 0;
+  text-align: center;
+}
