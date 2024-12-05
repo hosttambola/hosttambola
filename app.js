@@ -95,8 +95,11 @@ app.post("/send-message", async (req, res) => {
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  next(createError(404));
+  const error = new Error("Not Found");
+  error.status = 404;
+  next(error);
 });
+
 // error handler
 app.use(function (err, req, res, next) {
   res.locals.message = err.message;
