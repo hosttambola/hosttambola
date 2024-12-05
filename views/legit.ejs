@@ -7,6 +7,9 @@
     <title>Website Legitimacy Check</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/legit.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 </head>
 
 <body><%- include('partials/_nav') %>
@@ -116,7 +119,7 @@
                                         <p class="text-warning fw-bold">Recommendation: Play only if you know and
                                             trust the
                                             organizer.</p>
-                                        <!-- Download Certificate Button -->
+
                                         <div class="mt-4 text-center">
                                             <!-- Visit Website Button -->
                                             <a class="btn btn-info btn-lg me-2 m-3" href="http://<%= website %>"
@@ -131,44 +134,38 @@
                                             </a>
 
                                             <!-- Download PDF Button -->
-                                            <form action="/download/certificate/pdf" method="post"
-                                                style="display: inline-block;" class="m-3">
-                                                <input type="hidden" name="website" value="<%= website %>">
-                                                <button type="submit" class="btn btn-warning btn-lg fw-bold mx-2" style="
+
+                                            <button class=" pdfDownloadBtn btn btn-warning btn-lg fw-bold m-3" style="
                                                 border-radius: 50px;
                                                 color: black;
                                                 background: var(--primary-color);
                                                 border: none;
                                                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-                                                        <path
-                                                            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
-                                                    </svg> Download Certificate PDF
-                                                </button>
-                                            </form>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+                                                    <path
+                                                        d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
+                                                </svg> Download Certificate PDF
+                                            </button>
 
                                             <!-- Download Image Button -->
-                                            <form action="/download/certificate/image" method="post"
-                                                style="display: inline-block;" class="m-3">
-                                                <input type="hidden" name="website" value="<%= website %>">
-                                                <button type="submit" class="btn btn-success btn-lg fw-bold mx-2" style="
+
+                                            <button class="imgDownloadbtn btn btn-success btn-lg fw-bold m-3" style="
                                                 border-radius: 50px;
                                                 color: white;
                                                 background: var(--accent-color);
                                                 border: none;
                                                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-                                                        <path
-                                                            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
-                                                    </svg> Download Certificate Image
-                                                </button>
-                                            </form>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+                                                    <path
+                                                        d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
+                                                </svg> Download Certificate Image
+                                            </button>
                                         </div>
 
                                     </div>
@@ -274,27 +271,17 @@
                                                     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
                                                 Visit Website
                                             </a>
-                                            <a class="btn btn-success btn-lg me-2" href="/legit/<%= website %>" style="
-                                                    font-weight: bold;
-                                                    border-radius: 50px;
-                                                    background: var(--accent-color);
-                                                    border: none;
-                                                    color: white;
-                                                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
-                                                View Certificate
-                                            </a>
-                                            <form action="/download/certificate/pdf" method="post"
-                                                style="display: inline-block;">
-                                                <input type="hidden" name="website" value="<%= website %>">
-                                                <button type="submit" class="btn btn-warning btn-lg fw-bold" style="
-                                                    border-radius: 50px;
-                                                    color: black;
-                                                    background: var(--primary-color);
-                                                    border: none;
-                                                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
-                                                    Download PDF
-                                                </button>
-                                            </form>
+
+                                            <button class="imgDownloadbtn btn btn-success btn-lg fw-bold m-3"
+                                                style="border-radius: 50px;color: white;background: var(--accent-color);border: none;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+                                                    <path
+                                                        d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
+                                                </svg> Download Certificate Image
+                                            </button>
                                         </div>
 
                                     </div>
@@ -334,8 +321,150 @@
                 </div>
                 <% } %>
         </div>
+
+        <section class="d-none">
+            <div id="pdfHtml" class="certificate-container">
+                <div class="certificate">
+                    <img src="/images/certified.min.svg" class="logo" alt="Certificate Logo">
+                    <p class="certCode">Certificate Code: <strong>
+                            <%= certCode %>
+                        </strong></p>
+                    <p class="dateTime">Downloaded on: <%= new Date().toLocaleString() %>
+                    </p>
+                    <h1>CERTIFICATE OF TECHNICAL LEGITIMACY</h1>
+                    <p class="website-name">To: <strong class="bigName2">
+                            <%= website %>
+                        </strong></p>
+                    <div class="certificate-content">
+                        <p>
+                            This website <strong class="bigName1">
+                                <%= website %>
+                            </strong> is certified by <span class="highlight">HostTambola.in</span>,
+                            ensuring it is technically legitimate. No winner fixing or unfair activities are conducted.
+                        </p>
+                        <p>
+                            HostTambola.in-certified websites operate with pure chance, ensuring unbiased outcomes for
+                            all
+                            users.
+                        </p>
+                        <p class="text-muted">
+                            You can review how our system works by visiting our
+                            <a href="https://hosttambola.in/code" class="link">code transparency page</a>. The random
+                            number
+                            generation system uses <strong>Math.random()</strong>, ensuring complete randomness and
+                            fairness.
+                            Developers
+                            cannot predict the next number or winners.
+                        </p>
+                    </div>
+                    <div class="certificate-footer">
+                        <p>Certified by: <strong>HostTambola.in</strong></p>
+                        <p class="text-muted">Verify the certificate number at
+                            <a href="https://hosttambola.in/legit" class="link">www.hosttambola.in/legit</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="certificate-container" id="imgHtml">
+                <div class="certificate">
+                    <img src="/images/certified.min.svg" class="logo" alt="Certificate Logo">
+                    <p class="website-name">To: <strong class="bigName2">
+                            <%= website %>
+                        </strong></p>
+                    <div class="certificate-content">
+                        <p>
+                            This website <strong class="bigName1">
+                                <%= website %>
+                            </strong> is certified by <span class="highlight">HostTambola.in</span>,
+                            ensuring it is technically legitimate. No winner fixing or unfair activities are conducted.
+                        </p>
+                        <p>
+                            HostTambola.in-certified websites operate with pure chance, ensuring unbiased outcomes for
+                            all
+                            users.
+                        </p>
+                        <p class="text-muted">
+                            You can review how our system works by visiting our
+                            <a href="https://hosttambola.in/code" class="link">code transparency page</a>. The random
+                            number
+                            generation
+                            system uses <strong>Math.random()</strong>, ensuring complete randomness and fairness.
+                            Developers
+                            cannot predict the next number or winners.
+                        </p>
+                    </div>
+                    <div class="certificate-footer">
+                        <p>Certified by: <strong>HostTambola.in</strong></p>
+                        <p class="text-muted">Verify the certificate number at
+                            <a href="https://hosttambola.in/legit" class="link">www.hosttambola.in/legit</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <%- include('partials/_footer') %>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    // PDF Download Function
+                    function downloadPDF() {
+                        const element = document.getElementById("pdfHtml");
+                        const options = {
+                            margin: 1,
+                            filename: 'certificate.pdf',
+                            image: { type: 'jpeg', quality: 0.98 },
+                            html2canvas: { dpi: 192, letterRendering: true },
+                            jsPDF: { unit: 'px', format: 'A3', orientation: 'landscape' }
+                        };
+                        html2pdf().from(element).set(options).save();
+                    }
+
+                    // Image Download Function
+                    function downloadImage() {
+                        const element = document.getElementById("imgHtml"); // Capture the content for image
+                        console.log("button clicked");
+                        if (element) {
+                            // Debugging: Ensure the element is properly found
+                            console.log('Element found for image capture:', element);
+
+                            domtoimage.toPng(element, {
+                                width: 420,   // Increased canvas width to capture more content
+                                height: 750   // Increased canvas height for more detailed capture
+
+                            }).then(function (dataUrl) {
+                                // Debugging: Check if the image dataUrl is generated
+                                console.log('Image dataUrl generated:', dataUrl);
+
+                                const link = document.createElement('a');
+                                link.href = dataUrl;
+                                link.download = 'certificate.png';
+                                link.click();
+                            }).catch(function (error) {
+                                console.error('Error capturing the image:', error);
+                            });
+                        } else {
+                            console.error('Image element not found');
+                        }
+                    }
+
+                    // Add event listeners to all buttons with the class "pdfDownloadBtn"
+                    const pdfButtons = document.querySelectorAll(".pdfDownloadBtn");
+                    pdfButtons.forEach(function (button) {
+                        button.addEventListener("click", downloadPDF);
+                    });
+
+                    // Add event listeners to all buttons with the class "imgDownloadbtn"
+                    const imgButtons = document.querySelectorAll(".imgDownloadbtn");
+                    imgButtons.forEach(function (button) {
+                        button.addEventListener("click", downloadImage);
+                        console.log('Image download button:', button);
+                    });
+                });
+
+            </script>
 </body>
 
 </html>

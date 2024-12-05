@@ -10,7 +10,6 @@ const { error } = require("console");
 const app = express();
 const session = require("express-session");
 const LegitController = require("./controllers/LegitController");
-const certificateController = require("./controllers/certificateController");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -30,7 +29,7 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: false, // Set to true if using HTTPS
-      maxAge: 1000 * 60 * 60 * 24, // 1 day session expiration
+      maxAge: 1000 * 60 * 60 * 1, // 1 day session expiration
     },
   })
 );
@@ -61,8 +60,6 @@ app.post("/check-legitimacy", LegitController.checkLegitimacy);
 // Route to handle legitimacy check via URL parameter
 app.get("/legit/:websitename", LegitController.checkLegitimacyByUrl);
 app.post("/check-certificate", LegitController.checkCertificate);
-app.post("/download/certificate/pdf", certificateController.downloadPDF);
-app.post("/download/certificate/image", certificateController.downloadImage);
 // Route to handle form submission
 app.post("/send-message", async (req, res) => {
   const { name, email, phone, message } = req.body;
